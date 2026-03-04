@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REV-DEPLOY 🌊 - Deploy Cepat & Mudah</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #0b0f1c;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(11, 15, 28, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 163, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #00ffa3;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 163, 0.5));
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #00ffa3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #a0b0c0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00ffa3;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00ffa3;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-glow {
+            background: transparent;
+            border: 2px solid #00ffa3;
+            color: #00ffa3;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-glow:hover {
+            background: #00ffa3;
+            color: #0b0f1c;
+            box-shadow: 0 0 20px rgba(0, 255, 163, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 5% 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            background: radial-gradient(circle at 70% 30%, rgba(0, 255, 163, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #00ffa3, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #a0b0c0;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00ffa3;
+            display: block;
+        }
+
+        .stat-label {
+            color: #a0b0c0;
+            font-size: 0.9rem;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .floating-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 163, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating-card i {
+            font-size: 3rem;
+            color: #00ffa3;
+            margin-bottom: 20px;
+        }
+
+        /* Why Section */
+        .why-section {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #0f1425, #0b0f1c);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 255, 163, 0.1);
+            border-radius: 30px;
+            padding: 40px 30px;
+            transition: 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 163, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #00ffa3;
+            box-shadow: 0 20px 40px rgba(0, 255, 163, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #00ffa3;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #a0b0c0;
+            margin-bottom: 20px;
+        }
+
+        .feature-link {
+            color: #00ffa3;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Deploy Section */
+        .deploy-section {
+            padding: 80px 5%;
+            position: relative;
+        }
+
+        .deploy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 255, 163, 0.2);
+            border-radius: 40px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .deploy-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .deploy-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .deploy-header p {
+            color: #a0b0c0;
+        }
+
+        .upload-area {
+            border: 3px dashed rgba(0, 255, 163, 0.3);
+            border-radius: 30px;
+            padding: 60px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(0, 255, 163, 0.02);
+            margin-bottom: 30px;
+        }
+
+        .upload-area:hover {
+            border-color: #00ffa3;
+            background: rgba(0, 255, 163, 0.05);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 5rem;
+            color: #00ffa3;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .upload-text {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .upload-hint {
+            color: #a0b0c0;
+            font-size: 0.95rem;
+        }
+
+        .format-badges {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .badge {
+            background: rgba(0, 255, 163, 0.1);
+            border: 1px solid rgba(0, 255, 163, 0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: #00ffa3;
+        }
+
+        .file-info {
+            display: none;
+            background: rgba(0, 255, 163, 0.05);
+            border: 1px solid rgba(0, 255, 163, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .file-info.active {
+            display: block;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #a0b0c0;
+        }
+
+        .info-value {
+            color: #00ffa3;
+            font-weight: 600;
+        }
+
+        .deploy-btn {
+            background: linear-gradient(135deg, #00ffa3, #00ccff);
+            border: none;
+            color: #0b0f1c;
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding: 20px;
+            width: 100%;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deploy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .deploy-btn:hover::before {
+            left: 100%;
+        }
+
+        .deploy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 255, 163, 0.4);
+        }
+
+        /* Detail Card */
+        .detail-card {
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(0, 255, 163, 0.2);
+        }
+
+        .detail-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #00ffa3;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .detail-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            padding: 15px;
+        }
+
+        .detail-item .label {
+            color: #a0b0c0;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .detail-item .value {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .status-waiting {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid #ffc107;
+        }
+
+        .status-success {
+            background: rgba(0, 255, 163, 0.2);
+            color: #00ffa3;
+            border: 1px solid #00ffa3;
+        }
+
+        .status-deploying {
+            background: rgba(0, 123, 255, 0.2);
+            color: #007bff;
+            border: 1px solid #007bff;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .status-deploying::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            border: 2px solid #007bff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            padding: 80px 5%;
+            background: #0f1425;
+        }
+
+        .comparison-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .comparison-card.rev {
+            border-color: #00ffa3;
+            background: rgba(0, 255, 163, 0.05);
+            transform: scale(1.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card.rev::before {
+            content: 'BEST';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #00ffa3;
+            color: #0b0f1c;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .comparison-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .comparison-header i {
+            font-size: 2.5rem;
+            color: #00ffa3;
+            margin-bottom: 15px;
+        }
+
+        .comparison-header h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .comparison-list {
+            list-style: none;
+        }
+
+        .comparison-list li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #a0b0c0;
+        }
+
+        .comparison-list li i.fa-check {
+            color: #00ffa3;
+        }
+
+        .comparison-list li i.fa-times {
+            color: #ff4444;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 5% 30px;
+            background: #0b0f1c;
+            border-top: 1px solid rgba(0, 255, 163, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-col h5 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #a0b0c0;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #00ffa3;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0b0c0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin: 0 auto 30px;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-card.rev {
+                transform: scale(1);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .deploy-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-rocket"></i>
+            <span>REV-DEPLOY</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#why">Kenapa REV-DEPLOY?</a>
+            <a href="#deploy">Deploy</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#docs">Docs</a>
+        </div>
+        <button class="btn-glow" onclick="document.getElementById('deploy').scrollIntoView({behavior: 'smooth'})">
+            Mulai Deploy 🚀
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>
+                Deploy Website <br>
+                <span class="gradient-text">Cepat & Mudah</span> <br>
+                Dengan REV-DEPLOY
+            </h1>
+            <p>Platform deploy website statis tercepat dengan teknologi mutakhir. Dukung HTML, CSS, JavaScript, dan ZIP.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">10K+</span>
+                    <span class="stat-label">Website Deployed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99.9%</span>
+                    <span class="stat-label">Uptime</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2s</span>
+                    <span class="stat-label">Avg Deploy Time</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <div class="floating-card">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Upload File</h3>
+                <p>Drag & drop atau klik untuk upload</p>
+                <div style="margin-top: 20px; color: #00ffa3;">
+                    <i class="fas fa-check-circle"></i> HTML
+                    <i class="fas fa-check-circle" style="margin-left: 15px;"></i> ZIP
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="why-section" id="why">
+        <h2 class="section-title">Kenapa Harus <span class="gradient-text">REV-DEPLOY</span>?</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Super Cepat</h3>
+                <p>Deploy dalam hitungan detik dengan infrastruktur global Vercel. CDN tersebar di 100+ negara.</p>
+                <a href="#" class="feature-link">Pelajari lebih <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Keamanan SSL</h3>
+                <p>Semua website otomatis menggunakan SSL certificate. HTTPS enabled by default.</p>
+                <a href="#" class="feature-link">Pelajari lebih <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-infinity"></i></div>
+                <h3>Bandwidth Unlimited</h3>
+                <p>Tanpa batasan bandwidth. Website lu bisa diakses siapa saja, kapan saja.</p>
+                <a href="#" class="feature-link">Pelajari lebih <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Responsive Auto</h3>
+                <p>Optimasi otomatis untuk semua perangkat. Desktop, tablet, dan mobile.</p>
+                <a href="#" class="feature-link">Pelajari lebih <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-git-alt"></i></div>
+                <h3>Git Integration</h3>
+                <p>Integrasi dengan GitHub, GitLab, BitBucket. Auto deploy setiap push.</p>
+                <a href="#" class="feature-link">Pelajari lebih <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                <h3>99.9% Uptime</h3>
+                <p>Garansi uptime 99.9% dengan monitoring 24/7. Website lu selalu online.</p>
+                <a href="#" class="feature-link">Pelajari lebih <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deploy Section -->
+    <section class="deploy-section" id="deploy">
+        <div class="deploy-container">
+            <div class="deploy-header">
+                <h2><span class="gradient-text">Deploy Sekarang</span></h2>
+                <p>Upload file HTML atau ZIP lu, dan dapatkan URL dalam hitungan detik!</p>
+            </div>
+
+            <!-- Upload Area -->
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <div class="upload-text" id="uploadText">Klik atau drag file ke sini</div>
+                <div class="upload-hint" id="uploadHint">Mendukung: .html, .zip (Maks 50MB)</div>
+                
+                <div class="format-badges">
+                    <span class="badge"><i class="fas fa-file-code"></i> HTML</span>
+                    <span class="badge"><i class="fas fa-file-archive"></i> ZIP</span>
+                    <span class="badge"><i class="fas fa-image"></i> Assets</span>
+                </div>
+                
+                <input type="file" id="fileInput" class="file-input" accept=".html,.zip">
+            </div>
+
+            <!-- File Info -->
+            <div class="file-info" id="fileInfo">
+                <div class="info-row">
+                    <span class="info-label">Nama File:</span>
+                    <span class="info-value" id="fileName">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Ukuran:</span>
+                    <span class="info-value" id="fileSize">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Tipe:</span>
+                    <span class="info-value" id="fileType">-</span>
+                </div>
+            </div>
+
+            <!-- Deploy Button -->
+            <button class="deploy-btn" id="deployBtn">
+                <i class="fas fa-rocket"></i> DEPLOY WEBSITE
+            </button>
+
+            <!-- Detail Card -->
+            <div class="detail-card" id="detailCard">
+                <div class="detail-title">
+                    <i class="fas fa-info-circle"></i>
+                    Detail Deploy
+                </div>
+                
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <div class="label">Website URL</div>
+                        <div class="value" id="detailUrl">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">File</div>
+                        <div class="value" id="detailFile">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Waktu</div>
+                        <div class="value" id="detailTime">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="label">Status</div>
+                        <div class="value" id="detailStatus">
+                            <span class="status-badge status-waiting">Menunggu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <h2 class="section-title">Bandingkan dengan <span class="gradient-text">Platform Lain</span></h2>
+        
+        <div class="comparison-grid">
+            <div class="comparison-card">
+                <div class="comparison-header">
+                    <i class="fas fa-times-circle" style="color: #ff4444;"></i>
+                    <h4>Netlify</h4>
+                </div>
+                <ul class="comparison-list">
+                    <li><i class="fas fa-check"></i> Deploy cepat</li>
+                    <li><i class="fas fa-check"></i> SSL gratis</li>
+                    <li><i class="fas fa-times"></i> Bandwidth terbatas</li>
+                    <li><i class="fas fa-times"></i> Build lambat</li>
+                    <li><i class="fas fa-times"></i> UI ribet</li>
+                </ul>
+            </div>
+
+            <div class="comparison-card rev">
+                <div class="comparison-header">
+                    <i class="fas fa-crown" style="color: #00ffa3;"></i>
+                    <h4>REV-DEPLOY</h4>
+                </div>
+                <ul class="comparison-list">
+                    <li><i class="fas fa-check"></i> Deploy 2 detik</li>
+                    <li><i class="fas fa-check"></i> SSL gratis</li>
+                    <li><i class="fas fa-check"></i> Unlimited bandwidth</li>
+                    <li><i class="fas fa-check"></i> Build instant</li>
+                    <li><i class="fas fa-check"></i> UI modern & mudah</li>
+                    <li><i class="fas fa-check"></i> Drag & drop</li>
+                    <li><i class="fas fa-check"></i> 100+ locations</li>
+                </ul>
+            </div>
+
+            <div class="comparison-card">
+                <div class="comparison-header">
+                    <i class="fas fa-cloud" style="color: #ffaa00;"></i>
+                    <h4>Vercel</h4>
+                </div>
+                <ul class="comparison-list">
+                    <li><i class="fas fa-check"></i> Deploy cepat</li>
+                    <li><i class="fas fa-check"></i> SSL gratis</li>
+                    <li><i class="fas fa-check"></i> Bandwidth unlimited</li>
+                    <li><i class="fas fa-times"></i> Perlu akun</li>
+                    <li><i class="fas fa-times"></i> Setup ribet</li>
+                    <li><i class="fas fa-times"></i> CLI wajib</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h5>REV-DEPLOY</h5>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Produk</h5>
+                <ul>
+                    <li><a href="#">Fitur</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Enterprise</a></li>
+                    <li><a href="#">Changelog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Dokumentasi</h5>
+                <ul>
+                    <li><a href="#">Quick Start</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Kontak</h5>
+                <ul>
+                    <li><a href="#">support@rev-deploy.com</a></li>
+                    <li><a href="#">@revdeploy</a></li>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 REV-DEPLOY. All rights reserved. Dibuat dengan <i class="fas fa-heart" style="color: #00ffa3;"></i> untuk developer</p>
+        </div>
+    </footer>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadText = document.getElementById('uploadText');
+        const uploadHint = document.getElementById('uploadHint');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const fileType = document.getElementById('fileType');
+        const deployBtn = document.getElementById('deployBtn');
+        const detailUrl = document.getElementById('detailUrl');
+        const detailFile = document.getElementById('detailFile');
+        const detailTime = document.getElementById('detailTime');
+        const detailStatus = document.getElementById('detailStatus');
+
+        let selectedFile = null;
+
+        // Upload area click
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Drag & drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#00ffa3';
+            uploadArea.style.background = 'rgba(0, 255, 163, 0.1)';
+        });
+
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'rgba(0, 255, 163, 0.3)';
+            uploadArea.style.background = 'rgba(0, 255, 163, 0.02)';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'rgba(0, 255, 163, 0.3)';
+            uploadArea.style.background = 'rgba(0, 255, 163, 0.02)';
+            
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                validateAndSetFile(file);
+            }
+        });
+
+        // File input change
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                validateAndSetFile(file);
+            }
+        });
+
+        function validateAndSetFile(file) {
+            const validTypes = ['.html', '.zip'];
+            const ext = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+            
+            if (!validTypes.includes(ext)) {
+                alert('File harus .html atau .zip bang!');
+                return;
+            }
+
+            if (file.size > 50 * 1024 * 1024) {
+                alert('File terlalu gede! Maksimal 50MB');
+                return;
+            }
+
+            selectedFile = file;
+            
+            // Update UI
+            uploadText.innerHTML = `📄 ${file.name}`;
+            uploadHint.innerHTML = `Ukuran: ${(file.size / 1024 / 1024).toFixed(2)} MB`;
+            
+            // Show file info
+            fileInfo.classList.add('active');
+            fileName.innerHTML = file.name;
+            fileSize.innerHTML = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+            fileType.innerHTML = ext === '.html' ? 'HTML File' : 'ZIP Archive';
+            
+            // Update detail
+            detailFile.innerHTML = file.name;
+        }
+
+        // Deploy button
+        deployBtn.addEventListener('click', () => {
+            if (!selectedFile) {
+                alert('Pilih file dulu bang!');
+                return;
+            }
+
+            // Update status
+            detailStatus.innerHTML = '<span class="status-badge status-deploying">Deploying...</span>';
+            
+            // Generate random subdomain
+            const prefixes = ['rev', 'ocean', 'wave', 'sea', 'coral', 'reef', 'tide', 'surf'];
+            const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            const randomId = Math.random().toString(36).substring(2, 8);
+            const subdomain = `${randomPrefix}-${randomId}`;
+            
+            // Simulasi deploy
+            setTimeout(() => {
+                const now = new Date();
+                const formattedTime = now.toLocaleString('id-ID', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                
+                detailUrl.innerHTML = `https://${subdomain}.rev-deploy.vercel.app`;
+                detailTime.innerHTML = formattedTime;
+                detailStatus.innerHTML = '<span class="status-badge status-success">✅ Berhasil</span>';
+                
+                // Update file info
+                fileInfo.classList.remove('active');
+                uploadText.innerHTML = '✅ Deploy berhasil! Upload file lain?';
+                uploadHint.innerHTML = 'Klik atau drag file untuk deploy lagi';
+                
+                alert(`✅ Deploy Berhasil!\n\nURL: https://${subdomain}.rev-deploy.vercel.app\n\nFile: ${selectedFile.name}\nWaktu: ${formattedTime}`);
+            }, 3000);
+        });
+
+        // Smooth scroll untuk anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
